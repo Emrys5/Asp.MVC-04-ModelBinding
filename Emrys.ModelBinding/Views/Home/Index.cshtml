@@ -5,18 +5,17 @@
 <form style="margin-top:20px;">
     <div class="form-group">
         <label>名字</label>
-        <input type="text" class="form-control" value="Emrys">
+        <input type="text" class="form-control" id="name" value="Emrys">
     </div>
-
 
     <div class="form-group">
         <label>年龄</label>
-        <input type="text" class="form-control" value="26">
+        <input type="text" class="form-control" value="26" id="age">
     </div>
 
     <div class="form-group">
         <label>爱好</label>
-        <div>
+        <div id="bobbys">
             <label class="checkbox-inline">
                 <input type="checkbox" value="足球" checked="checked"> 足球
             </label>
@@ -34,33 +33,90 @@
             </label>
         </div>
     </div>
+    <div class="form-group">
+        <label>所在公司</label>
+        <input type="text" class="form-control" id="company-name" value="上海xxxxxx公司">
+        <input type="text" class="form-control" id="company-address" value="上海徐汇区xxxx路">
+        <input type="text" class="form-control company-tel" value="021-88888881">
+        <input type="text" class="form-control company-tel" value="021-88888882">
+        <input type="text" class="form-control company-tel" value="021-88888883">
+        <input type="text" class="form-control company-tel" value="021-88888884">
+    </div>
 
     <div class="form-group">
         <label>喜欢明星</label>
-        <div class="row">
+        <div class="row" id="star">
             <div class="col-md-4">
-                <div>
-                    <input type="text" class="form-control" placeholder="名字" value="成龙">
-                    <input type="text" class="form-control" placeholder="年龄" value="63">
-                    <input type="text" class="form-control" placeholder="作品" value="十二生肖">
+                <div class="item-star">
+                    <input type="text" class="form-control name" placeholder="名字" value="成龙">
+                    <input type="text" class="form-control age" placeholder="年龄" value="63">
+                    <input type="text" class="form-control movie" placeholder="作品" value="十二生肖">
                 </div>
             </div>
             <div class="col-md-4">
-                <div>
-                    <input type="text" class="form-control" placeholder="名字" value="刘亦菲">
-                    <input type="text" class="form-control" placeholder="年龄" value="18">
-                    <input type="text" class="form-control" placeholder="作品" value="功夫之王">
+                <div class="item-star">
+                    <input type="text" class="form-control name" placeholder="名字" value="刘亦菲">
+                    <input type="text" class="form-control age" placeholder="年龄" value="18">
+                    <input type="text" class="form-control movie" placeholder="作品" value="功夫之王">
                 </div>
             </div>
             <div class="col-md-4">
-                <div>
-                    <input type="text" class="form-control" placeholder="名字" value="胡歌">
-                    <input type="text" class="form-control" placeholder="年龄" value="24">
-                    <input type="text" class="form-control" placeholder="作品" value="琅琊榜">
+                <div class="item-star">
+                    <input type="text" class="form-control name" placeholder="名字" value="胡歌">
+                    <input type="text" class="form-control age" placeholder="年龄" value="24">
+                    <input type="text" class="form-control movie" placeholder="作品" value="琅琊榜">
                 </div>
-            </div> 
+            </div>
         </div>
 
     </div>
 </form>
 
+<div>
+    <button type="button" id="btn-submit">提交测试</button>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        $(function () {
+            $("#btn-submit").click(function () {
+                var data = {};
+                data.name = $("#name").val();
+                data.age = $("#age").val();
+
+
+                $("#bobbys input:checkbox:checked").each(function (index) {
+                    data["bobbys[" + index + "]"] = $(this).val();
+                });
+
+                data["company.name"] = $("#company-name").val();
+                data["company.address"] = $("#company-address").val();
+
+                $(".company-tel").each(function (index) {
+                    data["company.tel[" + index + "]"] = $(this).val();
+                });
+
+                $("#star .item-star").each(function (index) {
+                    data["star[" + index + "].name"] = $(this).find(".name").val();
+                    data["star[" + index + "].age"] = $(this).find(".age").val();
+                    data["star[" + index + "].movie"] = $(this).find(".movie").val();
+                });
+
+
+                console.log(data);
+
+                $.ajax({
+                    url: "/",
+                    type: "post",
+                    data: data,
+                    success: function (r) {
+                        console.log("-----------------");
+                        console.log(r);
+                    }
+                });
+
+            });
+        });
+    </script>
+
+}

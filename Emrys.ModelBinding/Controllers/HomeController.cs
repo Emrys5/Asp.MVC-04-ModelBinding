@@ -10,6 +10,7 @@ namespace Emrys.ModelBinding.Controllers
     {
         public ActionResult Index()
         {
+
             return View();
         }
 

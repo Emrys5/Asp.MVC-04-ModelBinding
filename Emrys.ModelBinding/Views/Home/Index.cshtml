@@ -2,30 +2,65 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<form style="margin-top:20px;">
+    <div class="form-group">
+        <label>名字</label>
+        <input type="text" class="form-control" value="Emrys">
+    </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+
+    <div class="form-group">
+        <label>年龄</label>
+        <input type="text" class="form-control" value="26">
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+
+    <div class="form-group">
+        <label>爱好</label>
+        <div>
+            <label class="checkbox-inline">
+                <input type="checkbox" value="足球" checked="checked"> 足球
+            </label>
+            <label class="checkbox-inline">
+                <input type="checkbox" value="篮球"> 篮球
+            </label>
+            <label class="checkbox-inline">
+                <input type="checkbox" value="电影" checked="checked"> 电影
+            </label>
+            <label class="checkbox-inline">
+                <input type="checkbox" value="小说"> 小说
+            </label>
+            <label class="checkbox-inline">
+                <input type="checkbox" value="音乐"> 音乐
+            </label>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+
+    <div class="form-group">
+        <label>喜欢明星</label>
+        <div class="row">
+            <div class="col-md-4">
+                <div>
+                    <input type="text" class="form-control" placeholder="名字" value="成龙">
+                    <input type="text" class="form-control" placeholder="年龄" value="63">
+                    <input type="text" class="form-control" placeholder="作品" value="十二生肖">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div>
+                    <input type="text" class="form-control" placeholder="名字" value="刘亦菲">
+                    <input type="text" class="form-control" placeholder="年龄" value="18">
+                    <input type="text" class="form-control" placeholder="作品" value="功夫之王">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div>
+                    <input type="text" class="form-control" placeholder="名字" value="胡歌">
+                    <input type="text" class="form-control" placeholder="年龄" value="24">
+                    <input type="text" class="form-control" placeholder="作品" value="琅琊榜">
+                </div>
+            </div> 
+        </div>
+
     </div>
-</div>
+</form>
+

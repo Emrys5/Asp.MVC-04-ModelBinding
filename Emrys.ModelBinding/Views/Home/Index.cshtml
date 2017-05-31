@@ -76,46 +76,104 @@
     <button type="button" id="btn-submit">提交测试</button>
 </div>
 
+
+
+<div>
+    <button type="button" id="btn-test-array">测试json格式数组</button>
+</div>
+
+
+
+
 @section scripts{
     <script type="text/javascript">
         $(function () {
             $("#btn-submit").click(function () {
                 var data = {};
+                var obj = {};
                 data.name = $("#name").val();
                 data.age = $("#age").val();
 
 
+                obj.name = $("#name").val();
+                obj.age = $("#age").val();
+
+                obj.bobbys = [];
                 $("#bobbys input:checkbox:checked").each(function (index) {
                     data["bobbys[" + index + "]"] = $(this).val();
+                    obj.bobbys.push($(this).val());
                 });
+
+                obj.company = {};
+                obj.company.name = $("#company-name").val();
+                obj.company.address = $("#company-address").val();
+                obj.company.tel = [];
+
 
                 data["company.name"] = $("#company-name").val();
                 data["company.address"] = $("#company-address").val();
 
                 $(".company-tel").each(function (index) {
                     data["company.tel[" + index + "]"] = $(this).val();
+                    obj.company.tel.push($(this).val());
                 });
+
+                obj.star = [];
 
                 $("#star .item-star").each(function (index) {
                     data["star[" + index + "].name"] = $(this).find(".name").val();
                     data["star[" + index + "].age"] = $(this).find(".age").val();
                     data["star[" + index + "].movie"] = $(this).find(".movie").val();
+
+                    obj.star.push({
+                        "name": $(this).find(".name").val(),
+                        "age": $(this).find(".age").val(),
+                        "movie": $(this).find(".movie").val()
+                    });
                 });
 
 
                 console.log(data);
+                console.log(obj);
 
                 $.ajax({
                     url: "/",
                     type: "post",
                     data: data,
                     success: function (r) {
-                        console.log("-----------------");
+                        console.log("-------data----------");
+                        console.log(r);
+                    }
+                });
+
+                $.ajax({
+                    url: "/?obj",
+                    type: "post",
+                    data: obj,
+                    success: function (r) {
+                        console.log("---------obj--------");
                         console.log(r);
                     }
                 });
 
             });
+
+            //$("#btn-test-array").click(function () {
+            //    $.ajax({
+            //        url: "/",
+            //        type: "post",
+            //        data: {
+            //            "name": "emrys",
+            //            "bobbys": ["足球", "篮球"],
+            //            "company": { "name": "上海xxxxx公司", "tel": ["123123123", "xxxxxxxxx", "123123123"] },
+            //            "star": [{ "name": "emrys", "age": 1, "movie": "电影1" },
+            //                { "name": "emrys", "age": 1, "movie": "电影1" }, { "name": "emrys", "age": 1, "movie": "电影1" }]
+            //        },
+            //        success: function (r) {
+            //            console.log(r);
+            //        }
+            //    });
+            //});
         });
     </script>
 

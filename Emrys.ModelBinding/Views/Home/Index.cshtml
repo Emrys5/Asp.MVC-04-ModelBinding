@@ -141,7 +141,7 @@
                     url: "/",
                     type: "post",
                     data: obj,
-                    success: function (r) { 
+                    success: function (r) {
                         console.log(r);
                     }
                 });
@@ -196,6 +196,19 @@
                     url: "/",
                     type: "post",
                     data: data1,
+                    success: function (r) {
+                        console.log("xxxxxxxxxxxxxx");
+                        console.log(r);
+                    }
+                });
+
+
+
+                $.ajax({
+                    url: "/?contentType",
+                    type: "post",
+                    contentType: "application/json",
+                    data: JSON.stringify(obj),
                     success: function (r) {
                         console.log("xxxxxxxxxxxxxx");
                         console.log(r);

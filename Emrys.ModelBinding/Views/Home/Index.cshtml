@@ -78,11 +78,6 @@
 
 
 
-<div>
-    <button type="button" id="btn-test-array">测试json格式数组</button>
-</div>
-
-
 
 
 @section scripts{
@@ -109,9 +104,9 @@
                 obj.company.address = $("#company-address").val();
                 obj.company.tel = [];
 
-
                 data["company.name"] = $("#company-name").val();
                 data["company.address"] = $("#company-address").val();
+
 
                 $(".company-tel").each(function (index) {
                     data["company.tel[" + index + "]"] = $(this).val();
@@ -132,10 +127,6 @@
                     });
                 });
 
-
-                console.log(data);
-                console.log(obj);
-
                 $.ajax({
                     url: "/",
                     type: "post",
@@ -147,33 +138,71 @@
                 });
 
                 $.ajax({
-                    url: "/?obj",
+                    url: "/",
                     type: "post",
                     data: obj,
+                    success: function (r) { 
+                        console.log(r);
+                    }
+                });
+                $.ajax({
+                    url: "/",
+                    type: "post",
+                    data: {
+                        "name": "Emrys",
+                        "age": "26",
+                        "bobbys": ["足球", "电影"],
+                        "company": {
+                            "name": "上海xxxxxx公司",
+                            "address": "上海徐汇区xxxx路",
+                            "tel": [
+                                "021-88888881",
+                                "021-88888882",
+                                "021-88888883",
+                                "021-88888884"
+                            ]
+                        },
+                        "star": [
+                            { "name": "成龙", "age": "63", "movie": "十二生肖" },
+                            { "name": "刘亦菲", "age": "18", "movie": "功夫之王" },
+                            { "name": "胡歌", "age": "24", "movie": "琅琊榜" }
+                        ]
+                    },
                     success: function (r) {
-                        console.log("---------obj--------");
+                        console.log(r);
+                    }
+                });
+
+
+
+                $.ajax({
+                    url: "/",
+                    type: "post",
+                    data: "name=Emrys&age=26&bobbys[0]=足球&star[0].movie=琅琊榜",
+                    success: function (r) {
+                        console.log(r);
+                    }
+                });
+
+
+
+
+                var data1 = { name: "Emrys" };
+                data1.age = 26;
+                data1["bobbys[0]"] = "足球";
+                data1["star[0].movie"] = "琅琊榜";
+
+                $.ajax({
+                    url: "/",
+                    type: "post",
+                    data: data1,
+                    success: function (r) {
+                        console.log("xxxxxxxxxxxxxx");
                         console.log(r);
                     }
                 });
 
             });
-
-            //$("#btn-test-array").click(function () {
-            //    $.ajax({
-            //        url: "/",
-            //        type: "post",
-            //        data: {
-            //            "name": "emrys",
-            //            "bobbys": ["足球", "篮球"],
-            //            "company": { "name": "上海xxxxx公司", "tel": ["123123123", "xxxxxxxxx", "123123123"] },
-            //            "star": [{ "name": "emrys", "age": 1, "movie": "电影1" },
-            //                { "name": "emrys", "age": 1, "movie": "电影1" }, { "name": "emrys", "age": 1, "movie": "电影1" }]
-            //        },
-            //        success: function (r) {
-            //            console.log(r);
-            //        }
-            //    });
-            //});
         });
     </script>
 

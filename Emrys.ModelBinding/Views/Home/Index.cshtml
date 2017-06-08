@@ -2,40 +2,40 @@
     ViewBag.Title = "Home Page";
 }
 
-<form style="margin-top:20px;">
+<form style="margin-top:20px;" id="form">
     <div class="form-group">
         <label>名字</label>
-        <input type="text" class="form-control" id="name" value="Emrys">
+        <input type="text" class="form-control" name="name" id="name" value="Emrys">
     </div>
 
     <div class="form-group">
         <label>年龄</label>
-        <input type="text" class="form-control" value="26" id="age">
+        <input type="text" class="form-control" value="26" name="age" id="age">
     </div>
 
     <div class="form-group">
         <label>爱好</label>
         <div id="bobbys">
             <label class="checkbox-inline">
-                <input type="checkbox" value="足球" checked="checked"> 足球
+                <input type="checkbox" value="足球" checked="checked" name="bobbys"> 足球
             </label>
             <label class="checkbox-inline">
-                <input type="checkbox" value="篮球"> 篮球
+                <input type="checkbox" value="篮球" name="bobbys"> 篮球
             </label>
             <label class="checkbox-inline">
-                <input type="checkbox" value="电影" checked="checked"> 电影
+                <input type="checkbox" value="电影" checked="checked" name="bobbys"> 电影
             </label>
             <label class="checkbox-inline">
-                <input type="checkbox" value="小说"> 小说
+                <input type="checkbox" value="小说" name="bobbys"> 小说
             </label>
             <label class="checkbox-inline">
-                <input type="checkbox" value="音乐"> 音乐
+                <input type="checkbox" value="音乐" name="bobbys"> 音乐
             </label>
         </div>
     </div>
     <div class="form-group">
         <label>所在公司</label>
-        <input type="text" class="form-control" id="company-name" value="上海xxxxxx公司">
+        <input type="text" class="form-control" id="company-name" name="company[0].name" value="上海xxxxxx公司">
         <input type="text" class="form-control" id="company-address" value="上海徐汇区xxxx路">
         <input type="text" class="form-control company-tel" value="021-88888881">
         <input type="text" class="form-control company-tel" value="021-88888882">
@@ -217,6 +217,27 @@
 
             });
         });
+
+
+        function GetJsonObj(frm) {
+            $.fn.serializeObject = function () {
+                var o = {};
+                var a = this.serializeArray();
+                $.each(a, function () {
+                    if (o[this.name]) {
+                        if (!o[this.name].push) {
+                            o[this.name] = [o[this.name]];
+                        }
+                        o[this.name].push(this.value || '');
+                    } else {
+                        o[this.name] = this.value || '';
+                    }
+                });
+                return o;
+            };
+            var jsonData = $(frm).serializeObject();
+            return jQuery.parseJSON(JSON.stringify(jsonData));
+        }
     </script>
 
 }
